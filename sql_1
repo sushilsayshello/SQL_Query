@@ -1,0 +1,24 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS `taxidata`.`yellow` (
+  `vendor` string,
+  `pickup` timestamp,
+  `dropoff` timestamp,
+  `count` int,
+  `distance` int,
+  `ratecode` string,
+  `storeflag` string,
+  `pulocid` string,
+  `dolocid` string,
+  `paytype` string,
+  `fare` decimal,
+  `extra` decimal,
+  `mta_tax` decimal,
+  `tip` decimal,
+  `tolls` decimal,
+  `surcharge` decimal,
+  `total` decimal
+) COMMENT "Table for taxi data"
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES ('field.delim' = ',')
+STORED AS INPUTFORMAT 'org.apache.hadoop.mapred.TextInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 's3://aws-tc-largeobjects/CUR-TF-200-ACDSCI-1/Lab2/yellow/'
+TBLPROPERTIES ('classification' = 'csv');
