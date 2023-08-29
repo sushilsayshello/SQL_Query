@@ -1,0 +1,6 @@
+CREATE TABLE taxidata.creditcard
+WITH (
+  format = 'PARQUET'
+  )AS
+  SELECT * from "yellow"
+  WHERE paytype = '1';
