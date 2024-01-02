@@ -1,4 +1,6 @@
 INSERT INTO employees (employee_id, first_name, last_name, department_id)
 VALUES (1, 'John', 'Doe', 101),
+ (2, 'Jane', 'Smith', 102),
+
 
 
