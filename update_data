@@ -1,2 +1,3 @@
 UPDATE employees
+SET department_id = 103
 
