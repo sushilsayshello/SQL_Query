@@ -1,2 +1,3 @@
 SELECT employees.employee_id, employees.first_name, employees.last_name, departments.department_name
+FROM employees
 
