@@ -1,1 +1,4 @@
 SELECT department_id, AVG(salary) AS avg_salary
+FROM employees
+
+
