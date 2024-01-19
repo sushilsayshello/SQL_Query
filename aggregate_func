@@ -1,0 +1,2 @@
+SELECT department_id, COUNT(*) as employee_count, AVG(salary) as avg_salary
+
