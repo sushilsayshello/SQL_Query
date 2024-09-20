@@ -1,0 +1,3 @@
+SELECT SUM(PaymentAmount) AS TotalPaid 
+FROM LoanPayments
+WHERE LoanID = 1;
