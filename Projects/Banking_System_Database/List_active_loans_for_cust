@@ -1,0 +1,3 @@
+SELECT LoanType, LoanAmount, InterestRate, StartDate, EndDate
+FROM Loans
+WHERE CustomerID = 1 AND Status = 'Approved';
