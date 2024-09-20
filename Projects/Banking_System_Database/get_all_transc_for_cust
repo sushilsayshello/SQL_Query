@@ -1,0 +1,4 @@
+SELECT t.TransactionDate, t.TransactionType, t.Amount 
+FROM Transactions t
+JOIN Accounts a ON t.AccountID = a.AccountID
+WHERE a.CustomerID = 1;
