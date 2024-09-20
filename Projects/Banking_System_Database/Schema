@@ -1,0 +1,114 @@
+-- Customers Table
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    Address VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(50),
+    ZipCode VARCHAR(10),
+    JoinDate DATE
+);
+
+-- Branches Table
+CREATE TABLE Branches (
+    BranchID INT PRIMARY KEY,
+    BranchName VARCHAR(255),
+    Address VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(50),
+    ZipCode VARCHAR(10),
+    PhoneNumber VARCHAR(20)
+);
+
+-- Accounts Table
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    CustomerID INT,
+    BranchID INT,
+    AccountType VARCHAR(50),  -- 'Savings', 'Checking'
+    Balance DECIMAL(15, 2),
+    OpenDate DATE,
+    Status VARCHAR(20),       -- 'Active', 'Closed'
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    FOREIGN KEY (BranchID) REFERENCES Branches(BranchID)
+);
+
+-- Transactions Table
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    AccountID INT,
+    TransactionDate DATE,
+    TransactionType VARCHAR(50),  -- 'Deposit', 'Withdrawal', 'Transfer'
+    Amount DECIMAL(15, 2),
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+-- Employees Table
+CREATE TABLE Employees (
+    EmployeeID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    BranchID INT,
+    JobTitle VARCHAR(100),
+    HireDate DATE,
+    Salary DECIMAL(15, 2),
+    FOREIGN KEY (BranchID) REFERENCES Branches(BranchID)
+);
+
+-- Loans Table
+CREATE TABLE Loans (
+    LoanID INT PRIMARY KEY,
+    CustomerID INT,
+    LoanType VARCHAR(50),      -- 'Home Loan', 'Personal Loan', 'Auto Loan'
+    LoanAmount DECIMAL(15, 2),
+    InterestRate DECIMAL(5, 2),
+    StartDate DATE,
+    EndDate DATE,
+    Status VARCHAR(20),        -- 'Approved', 'Pending', 'Closed'
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Loan Payments Table
+CREATE TABLE LoanPayments (
+    PaymentID INT PRIMARY KEY,
+    LoanID INT,
+    PaymentDate DATE,
+    PaymentAmount DECIMAL(15, 2),
+    FOREIGN KEY (LoanID) REFERENCES Loans(LoanID)
+);
+
+-- Credit Cards Table
+CREATE TABLE CreditCards (
+    CardID INT PRIMARY KEY,
+    CustomerID INT,
+    CardNumber VARCHAR(16),
+    ExpiryDate DATE,
+    CreditLimit DECIMAL(10, 2),
+    Balance DECIMAL(10, 2),
+    Status VARCHAR(20),    -- 'Active', 'Blocked'
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+-- Credit Card Transactions Table
+CREATE TABLE CreditCardTransactions (
+    TransactionID INT PRIMARY KEY,
+    CardID INT,
+    TransactionDate DATE,
+    Merchant VARCHAR(255),
+    Amount DECIMAL(10, 2),
+    FOREIGN KEY (CardID) REFERENCES CreditCards(CardID)
+);
+
+-- Account Transfers Table (Transfers between accounts)
+CREATE TABLE AccountTransfers (
+    TransferID INT PRIMARY KEY,
+    FromAccountID INT,
+    ToAccountID INT,
+    TransferDate DATE,
+    Amount DECIMAL(15, 2),
+    FOREIGN KEY (FromAccountID) REFERENCES Accounts(AccountID),
+    FOREIGN KEY (ToAccountID) REFERENCES Accounts(AccountID)
+);
