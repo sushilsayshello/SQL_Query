@@ -1,0 +1,3 @@
+SELECT SUM(Balance) AS TotalBalance 
+FROM Accounts
+WHERE CustomerID = 1;
