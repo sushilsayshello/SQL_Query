@@ -1,0 +1,10 @@
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    OrderDate DATE,
+    ShippedDate DATE,
+    ShippingAddress VARCHAR(255),
+    Status VARCHAR(50), -- 'Pending', 'Shipped', 'Delivered', 'Cancelled'
+    TotalAmount DECIMAL(15, 2),
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
