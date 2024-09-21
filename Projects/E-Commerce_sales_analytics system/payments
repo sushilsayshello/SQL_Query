@@ -1,0 +1,8 @@
+CREATE TABLE Payments (
+    PaymentID INT PRIMARY KEY,
+    OrderID INT,
+    PaymentDate DATE,
+    PaymentMethod VARCHAR(50), -- 'Credit Card', 'Debit Card', 'PayPal', 'Bank Transfer'
+    Amount DECIMAL(15, 2),
+    FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
+);
