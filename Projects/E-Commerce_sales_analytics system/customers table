@@ -1,0 +1,12 @@
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(100),
+    LastName VARCHAR(100),
+    Email VARCHAR(100) UNIQUE,
+    PhoneNumber VARCHAR(20),
+    Address VARCHAR(255),
+    City VARCHAR(100),
+    State VARCHAR(50),
+    ZipCode VARCHAR(10),
+    RegistrationDate DATE
+);
