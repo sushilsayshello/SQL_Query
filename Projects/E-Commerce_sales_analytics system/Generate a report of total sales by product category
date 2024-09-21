@@ -1,0 +1,8 @@
+SELECT c.CategoryName, SUM(oi.Quantity * oi.Price) AS TotalSales
+FROM OrderItems oi
+JOIN Products p ON oi.ProductID = p.ProductID
+JOIN Categories c ON p.CategoryID = c.CategoryID
+JOIN Orders o ON oi.OrderID = o.OrderID
+WHERE o.Status = 'Delivered'
+GROUP BY c.CategoryName
+ORDER BY TotalSales DESC;
